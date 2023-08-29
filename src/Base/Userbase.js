@@ -33,6 +33,14 @@ export default function Base({title,description,children}) {
     edge="end" 
     color="inherit"
      aria-label="students"
+     onClick={()=>navigate("/paymentgateway")}
+      sx={{ mr: 2 }}>  
+      Paymentgateway
+    </IconButton>
+    <IconButton 
+    edge="end" 
+    color="inherit"
+     aria-label="students"
      onClick={()=>navigate("/useraboutus")}
       sx={{ mr: 2 }}>  
       About Us

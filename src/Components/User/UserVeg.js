@@ -1,13 +1,14 @@
 
-import { Button, Card, CardMedia } from '@mui/material'
+import { Badge, Button, Card, CardMedia } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Userbase from '../../Base/Userbase'
 
-export default function UserVeg({vegdishes,setVegdishes}) {
+export default function UserVeg({vegdishes,setVegdishes,amount,setAmount,count,setCount}) {
     const navigate = useNavigate()
     const [error,setError] = useState("")
     let token = localStorage.getItem("token")
+    let price;
     useEffect(()=>{
         const fetchvegDishes = async()=>{
             const response = await fetch(`https://foodapp-backend-jkro-praveenive.vercel.app/vegdish/alldishes`,{
@@ -18,16 +19,27 @@ export default function UserVeg({vegdishes,setVegdishes}) {
                 }
             })
             const data= await response.json()
+             price = data.data[0].price
+             console.log("Price",price)
+          
+           
             if(!data.data){
                 setError(data.message)
             }
             setVegdishes(data.data)
         }
         fetchvegDishes()
+       
     },[])
+   
   return (
     <Userbase>
        <h1>Order Your Veg Dishes</h1>
+       <div className='card-value'>
+       <h1><Badge bg="success">
+              Cart {count}
+             </Badge>
+       </h1></div>
         {vegdishes&&(
              <div className='card-container'>
              {vegdishes?.map((data,idx)=>(
@@ -40,11 +52,13 @@ export default function UserVeg({vegdishes,setVegdishes}) {
                />
                  <h3>{data.dishname}</h3>
                  <p>{data.price}</p>
-                 <Button variant='contained' onClick={()=>navigate("")}>Order Now</Button><br/><br/>
+                 <Button variant='contained' onClick={() => { setAmount(amount + data.price); setCount(count + 1); }}>Add Cart</Button>{" "}
+                 <Button variant='contained' onClick={()=>{setAmount(amount-data.price); setCount(count-1);}} >Remove Cart</Button>
                </Card>
              ))}
            </div>
         )}
+        
     </Userbase>
   )
 }

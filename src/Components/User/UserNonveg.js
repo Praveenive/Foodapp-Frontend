@@ -1,9 +1,9 @@
-import { Button, Card, CardMedia } from '@mui/material'
+import { Badge, Button, Card, CardMedia } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Userbase from '../../Base/Userbase'
 
-export default function UserNonveg({nonvegdishes,setNonvegdishes}) {
+export default function UserNonveg({nonvegdishes,setNonvegdishes,amount,setAmount,count,setCount}) {
     const navigate = useNavigate()
     let token = localStorage.getItem("token")
     const [error,setError] = useState("")
@@ -27,6 +27,11 @@ export default function UserNonveg({nonvegdishes,setNonvegdishes}) {
   return (
     <Userbase>
         <h1>Welcome to Non-Veg Dishes</h1>
+        <div className='card-value'>
+       <h1><Badge bg="success">
+              Cart {count}
+             </Badge>
+       </h1></div>
         {nonvegdishes&&(
              <div className='card-container'>
              {nonvegdishes?.map((data,idx)=>(
@@ -39,7 +44,8 @@ export default function UserNonveg({nonvegdishes,setNonvegdishes}) {
                />
                  <h3>{data.dishname}</h3>
                  <p>{data.price}</p>
-                 <Button variant='contained' onClick={()=>navigate("")}>Order Now</Button><br/><br/>
+                 <Button variant='contained' onClick={()=>{setAmount(amount+data.price); setCount(count+1)}}>Add Cart</Button>{"  "}
+                 <Button variant='contained' onClick={()=>{setAmount(amount-data.price); setCount(count-1)}}>Remove Cart</Button>
                </Card>
              ))}
            </div>

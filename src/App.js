@@ -21,12 +21,15 @@ import UserNonveg from './Components/User/UserNonveg';
 import UserVeg from './Components/User/UserVeg';
 import UserAbout from './Components/User/UserAbout';
 import Homepage from './Components/Homepage';
+import Paymentgateway from './Components/Paymentgateway';
 
 function App() {
   const [vegdishes,setVegdishes] =useState([])
   const [nonvegdishes,setNonvegdishes] =useState([])
   const [catering,setCatering] = useState([])
   const [feedback,setfeedback] = useState([])
+  const [amount,setAmount] = useState(0)
+  const [count,setCount] = useState(0)
   return (
     <div className="App">
    <Routes>
@@ -44,9 +47,11 @@ function App() {
     nonvegdishes={nonvegdishes} setNonvegdishes={setNonvegdishes}/>}></Route>
     <Route path="/usermenu" element={<UserMenu/>}></Route>
     <Route path="/userveg" element={<UserVeg
-    vegdishes={vegdishes} setVegdishes={setVegdishes}/>}></Route>
+    vegdishes={vegdishes} setVegdishes={setVegdishes}
+    amount={amount} setAmount={setAmount} count={count} setCount={setCount}/>}></Route>
     <Route path="/usernonveg" element={<UserNonveg
-    nonvegdishes={nonvegdishes} setNonvegdishes={setNonvegdishes}/>}></Route>
+    nonvegdishes={nonvegdishes} setNonvegdishes={setNonvegdishes} count={count} setCount={setCount}
+    amount={amount} setAmount={setAmount}/>}></Route>
     <Route path='/mycateringorder' element={<Usercateringorder
     catering={catering} setCatering={setCatering}/>}></Route>
     <Route path="/createcatering"  element={<CreateCatering
@@ -61,6 +66,9 @@ function App() {
     feedback={feedback} setfeedback={setfeedback}/>}></Route>
     <Route path="/adminfeedback" element = {<AdminFeedback
      feedback={feedback} setfeedback={setfeedback}/>}></Route>
+     <Route path="paymentgateway" element={<Paymentgateway
+     amount={amount} setAmount={setAmount}
+     count={count} setCount={setCount}/>}></Route>
    </Routes>
     </div>
   );
