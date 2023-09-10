@@ -28,9 +28,9 @@ export default function UserNonveg({nonvegdishes,setNonvegdishes,amount,setAmoun
     <Userbase>
         <h1>Welcome to Non-Veg Dishes</h1>
         <div className='card-value'>
-       <h1><Badge bg="success">
+       <h1><Button onClick={()=>navigate("/paymentgateway")} variant="contained" bg="success">
               Cart {count}
-             </Badge>
+             </Button>
        </h1></div>
         {nonvegdishes&&(
              <div className='card-container'>

@@ -38,11 +38,11 @@ export default function Paymentgateway({amount,setAmount,count,setCount}) {
   return (
     <Userbase>
     <div>
-        <h2>Payment Gateway</h2>
+       
         <h3>Total Payment:{amount}</h3>
         <h3>No of Orders:{count} </h3>
         <input type="text" placeholder='enter amount' value={amount} onChange={(e)=>setAmount(e.target.value)}/><br/><br/>
-        <button type="submit" onClick={handlesubmit} >Submit</button>
+        <button type="submit" onClick={handlesubmit} variant="contained" >Place Order</button>
     </div>
     </Userbase>
   )

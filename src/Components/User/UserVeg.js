@@ -36,9 +36,9 @@ export default function UserVeg({vegdishes,setVegdishes,amount,setAmount,count,s
     <Userbase>
        <h1>Order Your Veg Dishes</h1>
        <div className='card-value'>
-       <h1><Badge bg="success">
+       <h1><Button onClick={()=>navigate("/paymentgateway")} variant="contained" bg="success">
               Cart {count}
-             </Badge>
+             </Button>
        </h1></div>
         {vegdishes&&(
              <div className='card-container'>
